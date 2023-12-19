@@ -5,6 +5,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import tensorflow as tf
+import keras
 from keras.layers import Layer
 import keras.backend as K
 
@@ -42,3 +43,9 @@ class ZeroMaskedEntries(Layer):
             return None
         else:
             return tf.not_equal(inputs, 0)
+    
+    def get_config(self):
+        base_config = super(ZeroMaskedEntries, self).get_config()
+        config = {'mask_zero': keras.saving.serialize_keras_object(self.mask_zero)}
+        return dict(list(base_config.items()) + list(config.items()))
+
