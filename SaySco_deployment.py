@@ -258,8 +258,10 @@ def sequence_and_padding(index_sequences, max_sentnum, max_sentlen):
 
 
 def build_model():
+
+    # loading model dari file, directory disesuaikan masing2
     model = load_model(
-        "D:\Study\Bangkit\Capstone_ml\machine-learning\model_capstone.h5", # directory silakan diubah sesuai tempat model
+        ".\machine-learning\model_capstone.h5",
         custom_objects={
             "ZeroMaskedEntries": ZeroMaskedEntries, 
             "Attention": Attention})
@@ -269,7 +271,7 @@ def build_model():
 
 def make_prediction(input_data):
 
-    # mengambil dan membuka vocabulary, directory disesuaikan
+    # mengambil dan membuka vocabulary, directory disesuaikan masing2
     with open('.\machine-learning\saved_vocab.pkl', 'rb') as f:
         vocab = pickle.load(f)
 
